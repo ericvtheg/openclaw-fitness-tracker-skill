@@ -93,6 +93,21 @@ def ensure_db() -> sqlite3.Connection:
         """
     )
 
+    conn.execute(
+        """
+        CREATE TABLE IF NOT EXISTS checkins (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          day TEXT NOT NULL,
+          created_at TEXT NOT NULL,
+          weight_lb REAL,
+          waist_in REAL,
+          steps INTEGER,
+          sleep_h REAL,
+          notes TEXT
+        );
+        """
+    )
+
     conn.commit()
     return conn
 

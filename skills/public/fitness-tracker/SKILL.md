@@ -21,6 +21,12 @@ Maintain a private local SQLite log of food and workouts, while keeping the skil
 python3 scripts/set_targets.py --kcal 2200 --protein 195 --fat 65
 ```
 
+2. Log weigh-in / waist:
+
+```bash
+python3 scripts/log_checkin.py --weight 186.4 --waist 34.5
+```
+
 2. Log food (with known macros):
 
 ```bash
@@ -92,6 +98,14 @@ When the user mentions pain or injuries (for example left scap/upper back pain, 
    - `severity` (0-10)
    - `status` (active/improving/resolved/flare)
 3. When generating a workout recommendation, always respect active injury notes and any pain rules (for example modified pressing).
+
+## Workflow: weigh-ins and waist
+
+When the user reports check-in data (morning weigh-in, waist at navel, optionally steps/sleep):
+
+1. Log a check-in with `log_checkin.py`.
+2. Use `report_checkins.py` to show recent trends (last 7/14/30 days).
+3. Use these trends to assess if the cut pace is on track (0.75-1.25 lb/week) and whether calories should change.
 
 ## Reporting conventions
 
