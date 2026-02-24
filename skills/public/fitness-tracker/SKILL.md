@@ -82,6 +82,17 @@ When the user texts sets/reps/weight:
 2. If it contains `weight x reps` patterns (for example `135x8`), `log_workout.py` will parse sets.
 3. Reply with a concise confirmation and, if helpful, a quick summary (set count, main lift, etc.).
 
+## Workflow: tracking injuries/pain
+
+When the user mentions pain or injuries (for example left scap/upper back pain, pressing pain, right ankle pain):
+
+1. Log an injury note with `log_injury.py`.
+2. Track optional fields:
+   - `area` (left scapula, left chest/armpit, right ankle)
+   - `severity` (0-10)
+   - `status` (active/improving/resolved/flare)
+3. When generating a workout recommendation, always respect active injury notes and any pain rules (for example modified pressing).
+
 ## Reporting conventions
 
 - Always distinguish "exact" vs "estimate".

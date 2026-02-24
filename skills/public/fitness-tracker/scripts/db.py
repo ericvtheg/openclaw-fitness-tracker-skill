@@ -79,6 +79,20 @@ def ensure_db() -> sqlite3.Connection:
         """
     )
 
+    conn.execute(
+        """
+        CREATE TABLE IF NOT EXISTS injury_entries (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          day TEXT NOT NULL,
+          created_at TEXT NOT NULL,
+          raw_text TEXT NOT NULL,
+          area TEXT,
+          severity REAL,
+          status TEXT NOT NULL          -- active|improving|resolved|flare
+        );
+        """
+    )
+
     conn.commit()
     return conn
 
