@@ -48,11 +48,14 @@ python3 scripts/log_workout.py --text "Bench: 135x8, 140x8, 140x7"
 When the user texts food:
 
 1. Extract day context (default to today).
-2. If macros are provided, log directly.
-3. If macros are missing:
-   - Ask 1 clarifying question only if required (for example cooked vs raw, brand, restaurant item name).
-   - Otherwise estimate and mark `confidence=estimate`.
-4. Reply with:
+2. **Weights default to cooked** unless the user explicitly says raw.
+3. If macros are provided, log directly.
+4. If macros are missing:
+   - Prefer **official nutrition** (label, restaurant nutrition page).
+   - If not available, estimate using a reasonable ingredient breakdown and mark `confidence=estimate`.
+   - Ask only 1 clarifying question when it materially changes the answer (for example raw vs cooked for rice/pasta/meat, or missing restaurant item details).
+   - For restaurant estimates, after logging: offer to save as a preset (or save once the user confirms it looks right).
+5. Reply with:
    - Item macros
    - Running totals for the day
    - Remaining targets (if targets exist)
