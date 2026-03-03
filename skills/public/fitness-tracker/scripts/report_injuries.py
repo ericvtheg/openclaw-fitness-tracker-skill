@@ -7,7 +7,9 @@ from db import ensure_db
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description="List recent injury/pain notes")
+    ap = argparse.ArgumentParser(
+        description="List recent training constraint notes (pain/illness/injury status). (Legacy name: report_injuries.py)"
+    )
     ap.add_argument("--days", type=int, default=30, help="Lookback window")
     args = ap.parse_args()
 
@@ -15,7 +17,7 @@ def main() -> None:
     rows = conn.execute(
         """
         SELECT day, created_at, area, severity, status, raw_text
-        FROM injury_entries
+        FROM constraints_entries
         WHERE day >= date('now', ?)
         ORDER BY created_at DESC
         """,
